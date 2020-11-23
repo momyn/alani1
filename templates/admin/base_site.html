@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img style="object-fit: cover" src="{% static 'assets/img/nextin.png' %}" height="auto" width="130px"  />
+    </a>
+</h1>
+{% endblock %}
+{% block nav-global %}{% endblock %}

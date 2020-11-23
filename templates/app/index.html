@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+
+{% block product_list %}
+<html lang="ru">
+<head>
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>ECO.menu NEXT IN</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="{% static 'assets/img/fav.png' %}">
+{#<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">#}
+{#<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">#}
+{#<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">#}
+{#<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">#}
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Raleway:wght@100;200;400;500&display=swap" rel="stylesheet">
+
+<!-- CSS Core -->
+<link rel="stylesheet" href="{% static 'dist/css/core.css' %}" />
+<link rel="stylesheet" href="{% static 'dist/css/style.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'dist/css/theme-beige.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Body Wrapper -->
+<div id="body-wrapper" class="animsition">
+
+    <!-- Header -->
+    <header id="header" class="light">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <!-- Header / End -->
+
+    <!-- Header -->
+    <header id="header-mobile" class="light">
+        <div class="module module-logo">
+            <a href="index.html">
+                {% for info in info %}
+                    <img src="{{ info.image.url }}" alt="">
+                {% endfor %}
+            </a>
+        </div>
+    </header>
+    <!-- Header / End -->
+    <!-- Content -->
+    <div id="content">
+
+        <!-- Page Title -->
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <section class="section section-main section-main-2 bg-dark dark slid">
+
+            <div id="section-main-2-slider" class="section-slider inner-controls">
+                <!-- Slide -->
+                {% for slider in slider %}
+                    <div class="slide">
+                        <div style="background-color: rgb(0 0 0); opacity: 0.5;" class="bg-image zooming"><img src="{{ slider.image.url }}" alt=""></div>
+                        <div class="container v-center">
+                            <h1 class="display-2 mb-2">{{ slider.name }}</h1>
+                            <h4 class="text-muted mb-5">{{ slider.title }}</h4>
+                            <a href="{{ slider.slug }}" class="btn btn-outline-primary btn-lg"><span>{{ slider.sale }}</span></a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!-- Slide -->
+            </div>
+        </section>
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <div class="container">
+                <div class="row no-gutters">
+                    <div class="col-md-10 offset-md-1" role="tablist">
+                        <!-- Menu Category / Pasta -->
+                        {% for categories in categories %}
+                            <div id="{{ categories.slug }}" class="menu-category">
+                                <div class="menu-category-title collapse-toggle collapsed" role="tab" data-target="#menu{{ categories.slug }}Content" data-toggle="collapse" aria-expanded="false">
+                                    <div class="bg-image"><img src="{{ categories.image.url }}" alt=""></div>
+                                    <h2 class="title">{{ categories.title }}</h2>
+                                </div>
+                                <div id="menu{{ categories.slug }}Content" class="menu-category-content collapse">
+                                    <div class="p-4">
+                                        <div class="row gutters-sm">
+                                            {% for products in categories.products.all %}
+                                                <div class="col-lg-4 col-6">
+                                                    <!-- Product Item -->
+                                                    <div class="menu-item menu-grid-item">
+                                                        <img class="mb-4" src="{{ products.image.url }}" alt="">
+                                                        <h6 class="mb-0">{{ products.name }}</h6>
+                                                        <span class="text-muted text-sm">{{ products.title }}</span>
+                                                        <div class="row align-items-center mt-4">
+                                                            <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">Цена</span> KZT <span data-product-base-price>{{ products.price }}</span></span></div>
+
+{#                                                            <div class="col-sm-6 text-sm-right mt-2 mt-sm-0"><button class="btn btn-outline-secondary btn-sm" data-action="open-cart-modal" data-id="1"><span>Add to cart</span></button></div>#}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+                                            {% for produkt in categories.produkt.all %}
+                                                <div class="menu-item menu-list-item">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-sm-6 mb-2 mb-sm-0">
+                                                            <h6 class="mb-0">{{ produkt.name }}</h6>
+                                                            <span class="text-muted text-sm">{{ produkt.title }}</span>
+                                                        </div>
+                                                        <div class="col-sm-6 text-sm-right">
+                                                            <span class="text-md mr-4"><span class="text-muted">Цена </span> KZT <span data-product-base-price>{{ produkt.price }}</span></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <footer id="footer" class="bg-dark dark">
+
+            <div class="container">
+                <!-- Footer 1st Row -->
+                <div class="footer-first-row row">
+                    <div class="col-lg-3 text-center">
+                        {% for info in info %}
+                            <a  href="index.html"><img style="width: 160px;" src="{{ info.image1.url }}" alt="" width="88" class="mt-5 mb-5"></a>
+                        {% endfor %}
+                    </div>
+
+                    <div class="col-lg-5 col-md-6" style="text-align: center;">
+                        <h5 class="text-muted mb-3">Социальные сети</h5></a>
+                        {% for info in info %}
+                            <a href="{{ info.slug }}" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="{{ info.insta }}"></i></a>
+                            <a href="{{ info.slug2 }}" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="{{ info.insta2 }}"></i></a>
+                            <a href="{{ info.slug3 }}" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="{{ info.insta3 }}"></i></a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Footer 2nd Row -->
+                <div class="footer-second-row" style="text-align: center;">
+                    <span class="text-muted">ECO.menu запатентован компанией NEXT IN.me </span>
+                </div>
+            </div>
+
+            <!-- Back To Top -->
+            <button id="back-to-top" class="back-to-top"><i class="ti ti-angle-up"></i></button>
+
+        </footer>
+        <!-- Footer / End -->
+
+    </div>
+    <!-- Content / End -->
+
+    <!-- Panel Mobile -->
+    <nav id="panel-mobile">
+        <div class="module module-logo bg-dark dark">
+            <a href="menu-grid-collapse.html#">
+                <img src="assets/img/logo-light.svg" alt="" width="88">
+            </a>
+            <button class="close" data-toggle="panel-mobile"><i class="ti ti-close"></i></button>
+        </div>
+        <nav class="module module-navigation"></nav>
+        <div class="module module-social">
+            <h6 class="text-sm mb-3">Социальные сети</h6>
+            {% for info in info %}
+                <a href="menu-grid-collapse.html#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="{{ info.insta }}"></i></a>
+            {% endfor %}
+            {#            <a href="menu-grid-collapse.html#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>#}
+            {#            <a href="menu-grid-collapse.html#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-whatsapp"></i></a>#}
+        </div>
+    </nav>
+
+    <!-- Body Overlay -->
+    <div id="body-overlay"></div>
+
+</div>
+
+<!-- JS Core -->
+<script src="{% static 'dist/js/core.js' %}"></script>
+
+
+
+</body>
+
+</html>
+{% endblock product_list %}
