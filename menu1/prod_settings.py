@@ -7,7 +7,7 @@ SECRET_KEY = '233443jknjkn34iggngk4v(2b*9atbz&fe_zl$-0zv0-1kwu2s1ao*bhaxldhqn7'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["185.154.14.236"]
+ALLOWED_HOSTS = ["185.154.14.236", "127.0.0.1", "185.154.14.236:8000"]
 
 DATABASES = {
     'default': {

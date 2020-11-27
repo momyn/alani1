@@ -59,7 +59,7 @@ class TextProduct(models.Model):
 class Slider(models.Model):
     name = models.CharField('Загаловок', max_length=150)
     title = models.TextField('Текст', max_length=350)
-    image = models.ImageField('Картинка', upload_to='product/%Y/%m/%d', blank=True)
+    image = models.ImageField('Картинка', upload_to='product/%Y/%m/%d', blank=False)
     sale = models.CharField('Текст на кнопке', max_length=100)
     slug = models.CharField('Ссылка', max_length=150, db_index=True, unique=True)
     available = models.BooleanField('Отключить товар', default=True)
