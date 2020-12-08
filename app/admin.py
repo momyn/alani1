@@ -13,8 +13,9 @@ admin.site.unregister(Group)
 
 @admin.register(TextProduct)
 class TextProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'title', 'price', 'slug', 'available']
+    list_display = ['id', 'name', 'category', 'title', 'price', 'slug', 'available']
     list_filter = ['name', 'available']
+    prepopulated_fields = {'slug': ('name', )}
 
     def image_show(self, obj):
         if obj.image:
@@ -28,8 +29,9 @@ class TextProductAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'title', 'price', 'image', 'slug', 'available']
+    list_display = ['id', 'name', 'category', 'title', 'price', 'image', 'slug', 'available']
     list_filter = ['name', 'available']
+    prepopulated_fields = {'slug': ('name', )}
 
     def image_show(self, obj):
         if obj.image:
@@ -65,4 +67,3 @@ class Info(admin.ModelAdmin):
 @admin.register(Slider)
 class Slider(admin.ModelAdmin):
     list_display = ['name', 'title', 'image', 'sale', 'slug', 'available']
-

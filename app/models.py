@@ -23,7 +23,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category,
                                  related_name='products',
                                  on_delete=models.CASCADE)
-    name = models.CharField('Загаловок', max_length=150)
+    name = models.CharField('Название блюды', max_length=150)
     title = models.TextField('Описание', max_length=350)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     image = models.ImageField('Картинка', upload_to='product/%Y/%m/%d', blank=False)
@@ -31,8 +31,8 @@ class Product(models.Model):
     available = models.BooleanField('Отключить товар', default=True)
 
     class Meta:
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
+        verbose_name = 'Блюдо'
+        verbose_name_plural = 'Блюды'
         index_together = (('id', 'slug'),)
 
 
@@ -42,15 +42,15 @@ class TextProduct(models.Model):
     category = models.ForeignKey(Category,
                                  related_name='produkt',
                                  on_delete=models.CASCADE)
-    name = models.CharField('Загаловок', max_length=150)
-    title = models.TextField('Описание', max_length=350)
+    name = models.CharField('Название блюды', max_length=150)
+    title = models.TextField('Описание', max_length=350, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     slug = models.CharField('Ссылка', max_length=150, db_index=True, blank=True, unique=True)
     available = models.BooleanField('Отключить товар', blank=True, default=True)
 
     class Meta:
-        verbose_name = 'Текстовое меню'
-        verbose_name_plural = 'Текстовое меню'
+        verbose_name = 'Блюдо без изображений'
+        verbose_name_plural = 'Блюды без изображений'
         index_together = (('id', 'slug'),)
 
 
@@ -58,10 +58,10 @@ class TextProduct(models.Model):
 
 class Slider(models.Model):
     name = models.CharField('Загаловок', max_length=150)
-    title = models.TextField('Текст', max_length=350)
+    title = models.TextField('Текст', max_length=350, blank=True)
     image = models.ImageField('Картинка', upload_to='product/%Y/%m/%d', blank=False)
-    sale = models.CharField('Текст на кнопке', max_length=100)
-    slug = models.CharField('Ссылка', max_length=150, db_index=True, unique=True)
+    sale = models.CharField('Текст на кнопке', blank=True, max_length=100)
+    slug = models.CharField('Ссылка', max_length=150, blank=True, db_index=True, unique=True)
     available = models.BooleanField('Отключить товар', default=True)
 
     class Meta:

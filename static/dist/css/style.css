@@ -14,8 +14,15 @@
 .mb-4, .my-4 {
     border-radius: 8px;
     margin-bottom: 0.8rem!important;
+    height: 180px;
+    object-fit: fill;
+    width: 100%;
 
 }
+.h6, h6 {
+    font-size: 1.4rem !important;
+}
+
 .mt-4, .my-4 {
     margin-top: 0.9rem!important;
     margin-bottom: 25px;
